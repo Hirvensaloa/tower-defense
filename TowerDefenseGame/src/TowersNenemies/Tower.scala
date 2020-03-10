@@ -1,4 +1,4 @@
-import coordinateSystem.Tile
+import CoordinateSystem.Tile
 
 abstract class Tower(val name: String, price: Int, radius: Int,val toTile: Tile) {
   

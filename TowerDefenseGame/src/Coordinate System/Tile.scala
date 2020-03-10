@@ -1,5 +1,0 @@
-package coordinateSystem
-
-class Tile {
-  
-}

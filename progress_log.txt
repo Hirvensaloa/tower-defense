@@ -1,0 +1,13 @@
+10.3.2020
+
+Lisätty torni, sen alaluokat, vihollinen ja koordinaatistoa aletttu toteuttamaan.
+
+Mitään toiminnallisuutta ei ole vielä testattu.
+
+Ammusten ja käyttöliittymän toteutuksessa on kaikista eniten epävarmuutta. Myös eri luokkien vastuita olen miettinyt. 
+
+Työmäärä noin 5h
+
+Olen aikataulusta jäljessä. 
+
+

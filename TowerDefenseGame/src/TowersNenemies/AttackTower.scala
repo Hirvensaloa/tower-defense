@@ -1,4 +1,4 @@
-import coordinateSystem.Tile
+import CoordinateSystem.Tile
 
 class AttackTower(name: String, price: Int, damage: Int, radius: Int,attackSpeed: Int, tile: Tile) extends Tower(name,price, radius, tile)   {
   
