@@ -1,4 +1,4 @@
-
+package TowersNenemies
 
 class Enemy(val name: String, LP: Int, val reward: Int, speed1: Double) {
     

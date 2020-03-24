@@ -10,4 +10,17 @@ Työmäärä noin 5h
 
 Olen aikataulusta jäljessä. 
 
+24.3.2020
+
+Peli-luokka luotu valmiiksi, koordinaatisto luotu, tornit luotu. Peli-luokan kumppaniolion toteutus ja GameLoader luokan toteutus kesken, nämä vastaavat asetustiedostojen lukemisesta. Niiden toteutukseen on nyt mennyt enemmän aikaa mitä ajattelin. Kun olen saanut asetustiedostot luotua ja testattua siirryn käyttöliittymään. 
+
+Mitään toiminnallisuutta ei ole vielä testattu. Seuraava vaiheeni on testata osaako GameLoader lukea asetustiedostoja oikein ja samalla tulee testattua onko uuden pelin alustamisessa mitään ongelmia. 
+
+Mitään suuria ongelmia ei ole, lukuunottamatta sitä että en pysy aikataulussa. Pieni ongelma luultavasti tulee siitä että en ole saanut testattua koodiani joten luultavasti muutamassa paikassa on huolimattomuusvirheitä, jotka tuovat lisää työtä myöhemmin. 
+
+Työmäärä noin 10h
+
+Olen aikataulusta jäljessä.  
+
+
 

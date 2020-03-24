@@ -1,3 +1,5 @@
+package TowersNenemies
+
 import CoordinateSystem.Tile
 
 class AttackTower(name: String, price: Int, damage: Int, radius: Int,attackSpeed: Int, tile: Tile) extends Tower(name,price, radius, tile)   {
@@ -6,9 +8,9 @@ class AttackTower(name: String, price: Int, damage: Int, radius: Int,attackSpeed
   
   private var speedOfAttack = attackSpeed
   
-  def changeSpeed(amount: Int) = speedOfAttack * amount
+  def getSpeed = speedOfAttack
   
-  def changeRadius(amount: Int) = radius * amount
+  def changeSpeed(amount: Double) = speedOfAttack * amount
   
   def getDamage = damageDone
   

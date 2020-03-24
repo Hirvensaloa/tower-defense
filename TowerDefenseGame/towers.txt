@@ -1,0 +1,22 @@
+Tiedostossa on määritelty kaikki pelissä olevat tornit. 
+Tähän voi luoda uusia torneja tai muuttaa olemassa olevien tornien ominaisuuksia. 
+Esimerkkinä formaatista toimii LaserCannon- niminen torni. 
+
+#Start
+type: Support
+name: LaserCannon
+price: 400
+damage: 50
+radius: 1
+attackSpeed: 1
+#End
+
+#Start
+type: Support
+name: Wizard
+price: 800
+radius: 2
+damageBoost: 0%
+radiusBoost: 50%
+speedBoost: 50%
+#End
