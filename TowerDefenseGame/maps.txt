@@ -1,0 +1,22 @@
+Tiedoston sisällä on kartat. *-symboloi tietä ja X-symboloi maata. 
+
+name: Grassfield
+
+S.XX...X
+ ....X.X
+ XXXXX.X
+ XXXXX..G
+ 
+ #End
+ 
+ 
+name: Park
+ 
+ XXXXXXX
+ ...XX..G
+S.X.XX.X
+ XX....X
+ 
+ #End
+
+   

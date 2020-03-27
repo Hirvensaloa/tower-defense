@@ -3,7 +3,7 @@ package TowersNenemies
 import CoordinateSystem.Tile
 
 //Torni, joka tukee toisia torneja antamalla niille lisää kantamaa ja tuhovoimaa
-class SupportTower(name: String, price: Int, radius: Int, tile: Tile, val neighbourTiles: Vector[Tile], bRadius: Double, bDamage: Double, bSpeed: Double) extends Tower(name, price, radius, tile){
+class SupportTower(name: String, price: Int, radius: Int, tile: Tile, bRadius: Double, bDamage: Double, bSpeed: Double) extends Tower(name, price, radius, tile){
   
   //Kertoo kuinka paljon torni antaa lisää kantamaa lähellä oleville torneille
   val radiusBoost = bRadius
@@ -16,6 +16,8 @@ class SupportTower(name: String, price: Int, radius: Int, tile: Tile, val neighb
   
   //Tornit, joille on jo annettu lisää tehoa. Pitää huolen ettei lisätä loputtomasti tehoa samoille torneille.
   private var towersEffected: Vector[Tower] = Vector()
+  
+  override def toString = s"$name\nprice: $price\nradius: $radius\nradius boost: $radiusBoost\ndamage boost: $damageBoost\nspeed boost: $speedBoost"
   
   
   def act() = {

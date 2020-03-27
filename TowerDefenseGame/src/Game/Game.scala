@@ -57,7 +57,7 @@ class Game(val grid: Grid, towers1: Buffer[Tower], money1: Int, hp: Int, private
     
     towerModel match {
       case tower: AttackTower => new AttackTower(tower.name, tower.price, tower.getDamage, tower.showRadius, tower.getSpeed, tile)
-      case tower: SupportTower => new SupportTower(tower.name, tower.price, tower.showRadius, tile, tile.neighbors(tower.showRadius), tower.radiusBoost, tower.damageBoost, tower.speedBoost)    
+      case tower: SupportTower => new SupportTower(tower.name, tower.price, tower.showRadius, tile, tower.radiusBoost, tower.damageBoost, tower.speedBoost)    
     }
     
   }
@@ -81,7 +81,8 @@ object Game{
   
   val towerMenu = GameLoader.loadTowerMenu
   
-  def newGame(grid: Grid) = {
+  def newGame(mapName: String) = {
+    val grid = GameLoader.loadGrid(mapName)._1
     new Game(grid, Buffer(), 500, 100, towerMenu, firstRound)
   }
   

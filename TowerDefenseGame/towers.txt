@@ -3,7 +3,7 @@ Tähän voi luoda uusia torneja tai muuttaa olemassa olevien tornien ominaisuuks
 Esimerkkinä formaatista toimii LaserCannon- niminen torni. 
 
 #Start
-type: Support
+type: Attack
 name: LaserCannon
 price: 400
 damage: 50

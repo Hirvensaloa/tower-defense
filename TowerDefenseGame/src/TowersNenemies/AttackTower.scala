@@ -15,6 +15,8 @@ class AttackTower(name: String, price: Int, damage: Int, radius: Int,attackSpeed
   def getDamage = damageDone
   
   def increaseDamage(amount: Double) = damageDone * amount
+  
+  override def toString = s"$name\nprice: $price\nradius: $radius\ndamage: $damage\nattackSpeed: $attackSpeed"
 
   def act() = {
     

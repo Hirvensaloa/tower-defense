@@ -28,4 +28,5 @@ object Round {
    
   //Antaa viimeisimmän kierroksen
   private var lastRound: Option[Round] = None 
+  
 }

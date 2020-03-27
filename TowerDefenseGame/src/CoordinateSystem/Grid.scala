@@ -6,6 +6,14 @@ import scala.collection.mutable.Buffer
 class Grid(private var tileList: Vector[Vector[Tile]]) {
   
   def listOfTiles = tileList
+  
+  override def toString = {
+    var string = ""
+    for(tiles <- listOfTiles){
+      string = string + tiles.map(a => if(a.forTowers) '1' else '0').mkString + '\n'
+    }
+    string
+  }
 }
 
 

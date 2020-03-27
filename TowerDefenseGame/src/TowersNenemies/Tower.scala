@@ -4,18 +4,22 @@ import CoordinateSystem.Tile
 
 abstract class Tower(val name: String,val price: Int, radius: Int,val tile: Tile) {
   
-  //Tämä kertoo hinnan, joka saadaan jos torni myydään
-  private var priceToSell = price * 0.8
-  
   private var radiusOfEffect = radius
   
   def showRadius = radiusOfEffect
   
-  def changeRadius(amount: Double) = radiusOfEffect * amount
+  def changeRadius(amount: Double) = {
+    radiusOfEffect * amount
+    neighborTileList = tile.neighbors(radius)
+  }
   
-  val neighborTiles = tile.neighbors(radius)
+  private var neighborTileList = tile.neighbors(radius)
   
-  def getSellPrice = priceToSell
+  val coordinates = tile.centerCoords
+  
+  def neighborTiles = neighborTileList
+  
+  def getSellPrice = price * 0.8
   
   def act(): Unit
   
