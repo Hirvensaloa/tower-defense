@@ -18,9 +18,6 @@ class AttackTower(name: String, price: Int, damage: Int, radius: Int,attackSpeed
   
   override def toString = s"$name\nprice: $price\nradius: $radius\ndamage: $damage\nattackSpeed: $attackSpeed"
 
-  def act() = {
-    
-    ???
-    
-  }
+  def act() = tile.act
+ 
 }

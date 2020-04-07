@@ -9,7 +9,7 @@ import java.io.FileReader
 
 
 //Parametri towers1 sisältää kaikki pelikentällä olevat tornit, jos niitä on. Towermenu sisältää kaikki pelissä ostettavat tornit. 
-class Game(val grid: Grid, towers1: Buffer[Tower], money1: Int, hp: Int, private val towerMenu: Vector[Tower], firstRound: Round) {
+class Game(val grid: Grid, towers1: Buffer[Tower], money1: Int, hp: Int, private val towerMenu: Vector[Tower], firstRound: Round, val difficulty: Int) {
   
   
   private var lifepoints = hp
@@ -26,7 +26,7 @@ class Game(val grid: Grid, towers1: Buffer[Tower], money1: Int, hp: Int, private
   
   private var currentRound = firstRound
   
-  def showRound = currentRound
+  def roundNumber = currentRound.number
   
   //Bufferi, joka sisältää kaikki kentällä olevat tornit
   private val towers = towers1
@@ -70,7 +70,9 @@ class Game(val grid: Grid, towers1: Buffer[Tower], money1: Int, hp: Int, private
   
   def advance() = 
   {
-    ???
+     currentRound.tick
+     
+     towers.foreach(_.act)
   }
   
   
@@ -81,15 +83,21 @@ object Game{
   
   val towerMenu = GameLoader.loadTowerMenu
   
-  def newGame(mapName: String) = {
-    val grid = GameLoader.loadGrid(mapName)._1
-    new Game(grid, Buffer(), 500, 100, towerMenu, firstRound)
+  def newGame(mapName: String, difficulty: Int) = {
+    val grid = GameLoader.loadGrid(mapName)
+    
+    val game = new Game(grid, Buffer(), 500, 100, towerMenu, newRound(difficulty), difficulty)
+    
+    thisGame = Some(game)
+    
+    game
   }
   
-  def loadGame() = ???
+  private var thisGame: Option[Game] = None
+  def getGame = thisGame.get
   
   
-  def firstRound: Round = ???
+  def newRound(difficulty: Int): Round = Round(difficulty)
   
   
 }

@@ -1,0 +1,29 @@
+Tässä tiedostossa määritellään kaikki pelissä olevat vastustajat.
+
+#Start
+
+name: Big Boy
+
+Lifepoints: 100
+Speed: 10
+Reward: 100 Btc
+
+#End
+
+#Start
+
+name: Fast Boy
+Lifepoints: 40
+Speed: 50
+Reward: 70 Btc
+
+#End
+
+#Start
+
+name: Little Boy
+Lifepoints: 20
+Speed: 30
+Reward: 40 Btc
+
+#End

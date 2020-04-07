@@ -22,5 +22,14 @@ Työmäärä noin 10h
 
 Olen aikataulusta jäljessä.  
 
+7.4.2020
+
+Pelin ominaisuudet on toteutettu pääpiirteittäin, muutama metodia lukuunottamatta. Pelissä ei ole myöskään saveGame tai loadGame ominaisuutta. Toteutuksia on testattu. 
+
+Nyt minulla on ongelmia käyttöliittymän kanssa. En saa piirrettyä kunnolla karttaa. Voisin ottaa palaverin Zoomissa, jos on mahdollista. 
+
+Työmäärä noin 15h
+
+Olen aikataulusta hieman jäljessä.
 
 

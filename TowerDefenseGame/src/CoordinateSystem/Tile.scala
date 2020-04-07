@@ -10,6 +10,8 @@ class Tile(val forTowers: Boolean, val xCoord: Int, val yCoord: Int,  val grid: 
   
   var hasTower: Option[Tower] = None
   
+  var enemies: Buffer[Enemy] = Buffer()
+  
   def removeTower() = hasTower = None
   
   def addTower(tower: Tower) = {
@@ -19,9 +21,18 @@ class Tile(val forTowers: Boolean, val xCoord: Int, val yCoord: Int,  val grid: 
     }
   }
   
-  val size = 30 
+  def act() = {
+    
+    if(enemies.nonEmpty){
+      
+      Unit
+      
+    }
+    
+  }
+
   
-  val centerCoords = (xCoord * size + size/2, yCoord * size + size/2)
+  val centerCoords = (xCoord * Tile.size + Tile.size/2, yCoord * Tile.size + Tile.size/2)
    
   //Ottaa parametrinaan etäisyyden, joka kertoo miltä alueelta naapurit lasketaan. Esim. 2 niin lasketaan kahden tiilen päästä naapurit, myös sivusuunnassa. 
   def neighbors(radius: Int) = {
@@ -44,5 +55,11 @@ class Tile(val forTowers: Boolean, val xCoord: Int, val yCoord: Int,  val grid: 
     neighboringTiles.toVector
     
   }
+  
+}
+
+object Tile {
+  
+  val size = 60
   
 }
