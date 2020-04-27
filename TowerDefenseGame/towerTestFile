@@ -1,0 +1,26 @@
+This file is for testing purposes. 
+
+#Start
+
+type: Support
+name: Yellow
+price: 800
+radius: 2
+radiusBoost: 1+
+damageBoost: 50+
+speedBoost: 1+
+image: tower2.png
+
+#End
+
+#Start
+
+type: Attack
+name: Green
+price: 4000
+radius: 3
+damage: 70
+attackSpeed: 3
+image: tower3.png
+
+#End

@@ -1,27 +1,27 @@
 package CoordinateSystem
 
 import scala.collection.mutable.Buffer
+import Game.GameLoader
 
-//Grid-luokka on jaettu Tile-olioihin. ydim ja xdim kertovat Gridin koon. 
-class Grid(private var tileList: Vector[Vector[Tile]]) {
+//Grid consists of Tiles.  
+class Grid(private var tileList: Vector[Vector[Tile]], val name: String) {
   
   def listOfTiles = tileList
   
-  override def toString = {
-    var string = ""
-    for(tiles <- listOfTiles){
-      string = string + tiles.map(a => if(a.forTowers) '1' else '0').mkString + '\n'
-    }
-    string
-  }
 }
-
-
+//Companion object helps create Grid.
 object Grid{
-  //Ottaa parametrina listan, joka kertoo onko kyseessä tie- vai nurmikkotiili
-  def apply(list: Vector[Vector[Boolean]]): Grid = {
+  
+  def width = GameLoader.mapWidth
+  def height = GameLoader.mapHeight
+  
+  /*Takes as parameter a list is a grid but with boolean values that tell if the tile is 
+  * grass or road tile. Then it creates the Tile. 
+  */
+  def apply(list: Vector[Vector[Boolean]], name: String): Grid = {
+  
     
-    val grid = new Grid(Vector())
+    val grid = new Grid(Vector(), name)
     
     val tiles: Buffer[Buffer[Tile]] = Buffer()
     

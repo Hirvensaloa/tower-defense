@@ -1,0 +1,9 @@
+Game settings can be modified from this file. Game difficulties are easy, medium and hard. 
+
+Lifepoints: 20
+
+Difficulty: Medium
+
+Coins: 800
+
+Round limit: 30

@@ -1,0 +1,8 @@
+You are not supposed to edit this file in anyway. Editing might lead to the game not running properly.
+tower: Brown (400,100)
+tower: Brown (100,0)
+roundnro:5
+difficulty:15
+hp:10
+money:8760
+mapname:Grassfield

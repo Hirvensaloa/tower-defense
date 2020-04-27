@@ -1,49 +1,61 @@
 package TowersNenemies
 
 import CoordinateSystem.Tile
+import java.awt.Image
 import Game.GameLoader
 import Game.Game
 import scala.math.abs
 
-/*Luokka kuvaa vihollista, joka pyrkii pääsemään tietä pitkin maaliin. Joka kierroksella syntyy tietty määrä vastustajia, riippuen niiden vaikeustasosta. 
-* Jokaisen vihollisen vaikeustaso määrittyy muiden vihollisten nopeuden ja elämien avulla. 
-*/
-class Enemy(val name: String, LP: Int, val reward: Int, speed1: Int, private var xCoord: Int, private var yCoord: Int) {
+
+//Class describes an enemy that tries to reach goal on the other side of the map. Enemies have difficulty which is determined by its speed and lifepoints.
+class Enemy(val name: String, LP: Int, val reward: Int, speed1: Int, private var xCoord: Int, private var yCoord: Int, val image: Image) {
     
   private var lifepoints = LP
   
   private var speed = speed1
+  def getSpeed = speed
   
-  //Kertoo, millä indeksillä tiili on polulla, jota kohti vihollinen etenee.
-  private var index = 0
+  private var index = 0 //Tells which index on the path the enemy is on. 
   
-  //Kertoo, minkä tiilen keskikohtaa kohti vihollisen pitää kulkea. 
-  private var direction: Tile = Enemy.path(index)
+  private var direction: Tile = Enemy.path(index) //Tells the tile which enemy is trying to go. 
   
-  //Kertoo aikaisemman sijainnin, josta voidaan päätellä millä tiilellä vihollinen on. Tiili on aluksi sama kuin ensimmäinen tiili. 
-  private var previousDirection: Tile = Enemy.path(index)
+  private var previousDirection: Tile = Enemy.path(index) //Tells the last tile enemy was trying to go. 
   
-  private var destination = direction.centerCoords
+  private var destination = direction.destinationCoords
   
   private var reachedGoal = false
   
   override def toString = s"name: $name\nhealth: $lifepoints\nspeed: $speed1\nreward: $reward\n\n"
 
+  var onTile = Enemy.path(index) //Tells which tile the enemy is on. 
+  
   def isInGoal = reachedGoal
   
-  //Kertoo, millä tiilellä vastustaja on.
-  private var onTile = Enemy.path(index)
+  def isDead = lifepoints <= 0
   
-  //Päivittää tiedon millä tiilellä vastustaja on. 
+  def decreaseLP(amount: Int) = {
+   
+    lifepoints -= amount
+    
+    if(this.isDead) {
+      
+      this.onTile.enemies -= this
+      Game.game.addMoney(this.reward)
+      
+    }
+  }
+ 
+  //Updates onTile. 
   def updateTile = {
     
-    if((xCoord - onTile.centerCoords._1).abs > Enemy.tileRadius || (yCoord - onTile.centerCoords._2).abs > Enemy.tileRadius ){
+    if(!isDead && (xCoord - onTile.coords._1).abs > Enemy.tileRadius || (yCoord - onTile.coords._2).abs > Enemy.tileRadius ){
       
       onTile.enemies -= this
-      val index = Enemy.path.indexOf(this) + 1
+      val indexi = Enemy.path.indexOf(onTile) + 1
       
-      onTile = if(Enemy.path.size >= index) Enemy.path(index) else onTile
+      onTile = if(Enemy.path.size > indexi) Enemy.path(indexi) else onTile
       onTile.enemies += this
+      
       
     }
     
@@ -51,6 +63,7 @@ class Enemy(val name: String, LP: Int, val reward: Int, speed1: Int, private var
   
   def coordinates = (xCoord, yCoord)
 
+  //Updates direction for enemy. 
   def updateDirection = {
     
       index += 1
@@ -60,24 +73,24 @@ class Enemy(val name: String, LP: Int, val reward: Int, speed1: Int, private var
         destination = (destination._1 + Enemy.tileRadius, destination._2)
         
       }else{
-        
+
       previousDirection = direction 
       direction = Enemy.path(index)
-      destination = direction.centerCoords
+      destination = direction.destinationCoords
       
       }
       
   }
   
-  //Kun muuttuja on <= 0 niin vihollinen voi liikkua yhden, jonka jälkeen muuttujasta tulee 1000 ja tätä aletaan vähentää muuttujan speed-arvolla. 
+  //When this is == 0 enemy can move one step forward, then it is reset to 350 and starts to tick down with enemys speed value. 
   private var whenToMove = 0
   
-  //Katsoo voiko vihollinen liikkua ja liikkuu sen mukaan. 
+  //Checks whether the player can move or not. If it can move, move is called. 
   def act = {
     
     if(whenToMove <= 0){
       move
-      whenToMove = speed
+      whenToMove = 350
     } else {
       whenToMove -= speed
     }
@@ -85,7 +98,7 @@ class Enemy(val name: String, LP: Int, val reward: Int, speed1: Int, private var
   }
   
   
-  //Liikuttaa vihollista yhdellä kohti directionia. 
+  //Moves enemy one step forward towards direction. 
   private def move = {
     
     updateTile    
@@ -99,9 +112,9 @@ class Enemy(val name: String, LP: Int, val reward: Int, speed1: Int, private var
        Unit
      }
      
-     if(yCoord < destination._1){
+     if(yCoord < destination._2){
        yCoord += 1
-     } else if(yCoord > destination._1)
+     } else if(yCoord > destination._2)
      {
        yCoord -= 1
      }else{
@@ -110,42 +123,37 @@ class Enemy(val name: String, LP: Int, val reward: Int, speed1: Int, private var
     
      if(xCoord == destination._1 && yCoord == destination._2) updateDirection
      
-     if(xCoord == Enemy.goal._1 && yCoord == Enemy.goal._2 && !reachedGoal) {reachedGoal = true; Enemy.damage}
+     if(xCoord == Enemy.goal._1 && yCoord == Enemy.goal._2 && !reachedGoal) {
+       
+       reachedGoal = true
+       Game.game.decreaseLP(1)
+       this.onTile.enemies -= this
+       }
           
     
-  }
-  
-  def getSpeed = speed
-
-  def decreaseLP(amount: Int) = lifepoints -= amount
-  
-  def isDead = lifepoints <= 0
-  
-  
+  }    
   
 }
 
 object Enemy{
   
-  def apply(name: String, parameters: Vector[Int]) = {
-    new Enemy(name, parameters(0), parameters(1), parameters(2), goal._1, goal._2)
+  def apply(name: String, parameters: Vector[Int], img: Image) = {
+    
+    new Enemy(name, parameters(0), parameters(1), parameters(2), start._1, start._2, img)
+    
   }
       
-  //Reitti, jota pitkin viholliset kulkevat.
-  lazy val path = GameLoader.getPath
+  //Path that enemies are meant to follow.
+  def path = GameLoader.getPath
   
-  //Maali, joka vihollisten tulee saavuttaa eli pari xy-koordinaatteja. 
-  lazy val goal = (path.last.centerCoords._1 + tileRadius, path.last.centerCoords._2)
+  //Coordinates where enemy starts.
+  private def start = (path.head.destinationCoords._1 - tileRadius, path.head.destinationCoords._2)
   
+  //Coordinates where enemy is trying to get. 
+  private def goal = (path.last.destinationCoords._1 + tileSize/4, path.last.destinationCoords._2)
+
   val tileSize = Tile.size
-  
   val tileRadius = tileSize / 2
-  
-  private var game: Option[Game] = None
-  
-  def updateGame(game1: Game) = game = Some(game1)
-  
-  def damage = if(game.nonEmpty) game.get.decreaseLP(1)
     
   
 }

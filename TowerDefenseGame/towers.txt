@@ -1,22 +1,56 @@
-Tiedostossa on määritelty kaikki pelissä olevat tornit. 
-Tähän voi luoda uusia torneja tai muuttaa olemassa olevien tornien ominaisuuksia. 
-Esimerkkinä formaatista toimii LaserCannon- niminen torni. 
+Here are all the towers that are available in the game. You can define tower between #Start and #End.
+All tower types must have type, name, price, damage, image and radius given. Attack types must also have damage
+and attack speed. Support towers must have radius, damage and speed boosts. Radius tells towers radius in tiles. 
+Low speed is 1 and high speed is 5. It can be set higher though. Damage tells how much lifepoints does the tower
+reduce from enemy when hit. Add images to Images-folder. 
 
 #Start
 type: Attack
-name: LaserCannon
+name: Bow
 price: 400
 damage: 50
 radius: 1
 attackSpeed: 1
+image: tower1.png
 #End
 
 #Start
 type: Support
-name: Wizard
-price: 800
+name: Booster
+price: 6000
 radius: 2
-damageBoost: 0%
-radiusBoost: 50%
-speedBoost: 50%
+radiusBoost: 1+
+damageBoost: 10+
+speedBoost: 1+
+image: tower2.png
+#End
+
+#Start
+type: Attack
+name: Cannon
+price: 4000
+radius: 3
+damage: 50
+attackSpeed: 3
+image: tower3.png
+#End
+
+#Start
+type: Attack
+name: Archers
+price: 1600
+radius: 2
+damage: 40
+attackSpeed: 2
+image: tower4.png
+#End
+
+#Start
+type: Attack
+name: Cannon Tower
+price: 3500
+damage: 50
+radius: 1
+attackSpeed: 3
+image: tower5.png
 #End

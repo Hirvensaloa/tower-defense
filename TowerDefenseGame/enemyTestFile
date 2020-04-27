@@ -1,0 +1,32 @@
+This file is for testing purposes. 
+
+#Start
+
+name: Big Boy
+
+Lifepoints: 100
+Speed: 10
+Reward: 100 Btc
+Image: enemy1.png
+
+#End
+
+#Start
+
+name: Fast Boy
+Lifepoints: 40
+Speed: 50
+Reward: 70 Btc
+Image: enemy2.png
+
+#End
+
+#Start
+
+name: Little Boy
+Lifepoints: 60
+Speed: 30
+Reward: 40 Btc
+Image: enemy3.png
+
+#End

@@ -1,4 +1,8 @@
-Tiedoston sisällä on kartat. *-symboloi tietä ja X-symboloi maata. 
+File contains map which can be created or edited here. '.' is a symbol for road
+and 'X' is symbol for grass which player can place towers. 'S' symbols starting point
+and 'G' symbols goal, both of these should exist once for map to be valid. Also path must
+be continous. For the game to run smoothly the recommended size is 9 x 6 or under. Map also
+has to be a rectangle shape and cannot be under 5x3. 
 
 name: Grassfield
 
@@ -18,5 +22,22 @@ S.X.XX.X
  XX....X
  
  #End
+ 
+name: Yard
+ 
+ XXXX....X
+ X....XX.X
+S..XX....X
+ XXXX.XXXX
+ XXXX.....G
+ XXXXXXXXX
 
-   
+#End  
+
+name: Little Park
+
+ ...XX
+S.X.XX
+ XX...G
+ 
+ #End

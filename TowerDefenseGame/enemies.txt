@@ -1,29 +1,51 @@
-Tässä tiedostossa määritellään kaikki pelissä olevat vastustajat.
+Here are all the enemies in the game. All enemies must have name, speed, reward and image. 
+Low speed is around 10 and 100 is high. It can be set higher though. Add images to Images-folder. 
 
 #Start
 
-name: Big Boy
+name: blue boy
 
-Lifepoints: 100
-Speed: 10
+Lifepoints: 200
+Speed: 20
 Reward: 100 Btc
+Image: enemy1.png
 
 #End
 
 #Start
 
-name: Fast Boy
+name: purple boy
 Lifepoints: 40
-Speed: 50
-Reward: 70 Btc
+Speed: 40
+Reward: 30 Btc
+Image: enemy2.png
 
 #End
 
 #Start
 
 name: Little Boy
-Lifepoints: 20
-Speed: 30
-Reward: 40 Btc
+Lifepoints: 60
+Speed: 20
+Reward: 20 Btc
+Image: enemy3.png
+
+#End
+
+#start
+name: red boy
+Lifepoints: 70
+Speed: 40
+Reward: 35 Btc
+Image: enemy4.png
+
+#End
+
+#start
+name: Boss
+Lifepoints: 100
+Speed: 50
+Reward: 80 Btc
+Image: enemy5.png
 
 #End

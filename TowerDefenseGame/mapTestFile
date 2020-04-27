@@ -1,0 +1,27 @@
+This file is for testing purposes. 
+
+name: map1
+                  
+S.XX...X
+ ....X.X
+ XXXXX.X
+ XXXXX..G
+                  
+#End
+                            
+name: map2
+                  
+S.....X
+ XXXX..
+ XXXXX.
+ XXXXX.G
+                  
+#End     
+
+name: map3
+
+S...XX
+ XXX..
+ XXXX.G
+ 
+ #End

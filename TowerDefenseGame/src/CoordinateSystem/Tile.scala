@@ -1,9 +1,10 @@
 package CoordinateSystem
 
 import scala.collection.mutable.Buffer
+import Interface.GameGUI
 import TowersNenemies._
 
-//Tilet ovat alustavasti 30px, 30px kokoisia. Tilella on keskikoordinaatti, jota kohti viholliset pyrkivät ja johon torneja voi laittaa. 
+//Tile can have tower added to it if its an grass tile and it can have enemies on it if its road tile. 
 class Tile(val forTowers: Boolean, val xCoord: Int, val yCoord: Int,  val grid: Grid) {
   
   def canAddTower = forTowers && hasTower.isEmpty
@@ -21,20 +22,27 @@ class Tile(val forTowers: Boolean, val xCoord: Int, val yCoord: Int,  val grid: 
     }
   }
   
-  def act() = {
-    
-    if(enemies.nonEmpty){
+  //When called by tower it passes information to GameGUI about which bullets to draw. This takes basically care of damaging enemies. 
+  def act(tower: AttackTower) = {
       
-      Unit
+      val enemy = enemies(0)
+      val enemyCoords = (enemy.coordinates._1 + Tile.size / 4, enemy.coordinates._2 + Tile.size / 4)
       
-    }
-    
+      enemy.decreaseLP(tower.getDamage)
+      
+      val coordinates = (tower.centerCoords, enemyCoords)
+      
+      GameGUI.bulletsToDraw += coordinates -> Game.Settings.bulletDrawTime         
+  
   }
 
   
-  val centerCoords = (xCoord * Tile.size + Tile.size/2, yCoord * Tile.size + Tile.size/2)
+  val coords = (xCoord * Tile.size, yCoord * Tile.size)
+  
+  //These coordinates tell enemies where to go. 
+  val destinationCoords = (coords._1 + Tile.size/4, coords._2 + Tile.size/4)
    
-  //Ottaa parametrinaan etäisyyden, joka kertoo miltä alueelta naapurit lasketaan. Esim. 2 niin lasketaan kahden tiilen päästä naapurit, myös sivusuunnassa. 
+  //Returns all neighboring tiles within the radius. 
   def neighbors(radius: Int) = {
     
     val neighboringTiles: Buffer[Tile] = Buffer()
@@ -52,7 +60,7 @@ class Tile(val forTowers: Boolean, val xCoord: Int, val yCoord: Int,  val grid: 
       }
     }
     
-    neighboringTiles.toVector
+    neighboringTiles.toVector.sortBy(tile => tile.coords).reverse
     
   }
   
@@ -60,6 +68,6 @@ class Tile(val forTowers: Boolean, val xCoord: Int, val yCoord: Int,  val grid: 
 
 object Tile {
   
-  val size = 60
+  val size = Game.Settings.tileSize
   
 }
