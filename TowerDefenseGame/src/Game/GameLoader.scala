@@ -465,6 +465,7 @@ object GameLoader {
         
         map += name -> image
         
+        
       }
       
     }catch{
